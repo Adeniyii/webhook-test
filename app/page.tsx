@@ -4,7 +4,7 @@ export const dynamic = "force-dynamic"
 
 export default async function Home() {
   const webhooks = await kv.get<any[]>("webhooks");
-  const hooks = await fetch("/api/hooks")
+  const hooks = await fetch("https://webhook-test-khaki.vercel.app/api/hooks")
 
   console.log(JSON.stringify(webhooks), {hooks})
   
