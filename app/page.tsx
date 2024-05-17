@@ -14,6 +14,7 @@ export default async function Home() {
       {webhooks?.map((wh, idx) => (
         <div key={wh.id}>
           <p>{idx}</p>
+          <p className="mb-4 mt-2">------------------------------------------------------------------</p>
           <pre>
             {JSON.stringify(wh, undefined, 4)}
           </pre>
