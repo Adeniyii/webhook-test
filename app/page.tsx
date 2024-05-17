@@ -12,15 +12,31 @@ export default async function Home() {
     <main className="flex min-h-screen flex-col items-center p-24">
       <p>List of received webhook triggers</p>
     <div className="flex flex-col gap-20">
-      {webhooks?.[0].map((wh: any, idx: any) => (
-        <div key={wh.id}>
+      {webhooks.map((wh: any, idx: any) => {
+
+        if (Array.isArray(wh)) {
+          return wh.map((whh, idx) => {
+            return (
+        <div key={idx}>
+          <p>{idx + 1}</p>
+          <p className="mb-4 mt-2">------------------------------------------------------------------</p>
+          <pre>
+            {JSON.stringify(whh, undefined, 4)}
+          </pre>
+        </div>
+            )
+          })
+        }
+        
+        return (
+        <div key={idx}>
           <p>{idx + 1}</p>
           <p className="mb-4 mt-2">------------------------------------------------------------------</p>
           <pre>
             {JSON.stringify(wh, undefined, 4)}
           </pre>
         </div>
-      ))}
+      )})}
     </div>
     </main>
   );
