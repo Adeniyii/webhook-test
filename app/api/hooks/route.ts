@@ -5,9 +5,9 @@ export const dynamic = "force-dynamic"
 
 export const GET = async () => {
     try {
-        const webhooks = await kv.get<any[]>("webhooks");
+        const webhooks = await kv.mget<any[]>("webhooks");
         
-        return NextResponse.json({webhooks}, { status: 200 });
+        return NextResponse.json(webhooks, { status: 200 });
     } catch (error) {
         // Handle errors appropriately
         console.error("Error appending webhook:", error);
