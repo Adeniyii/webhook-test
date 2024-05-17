@@ -5,7 +5,7 @@ export const dynamic = "force-dynamic"
 export default async function Home() {
   const webhooks = await kv.get<any[]>("webhooks");
 
-  console.log({webhooks})
+  console.log(JSON.stringify(webhooks))
   
   return (
     <main className="flex min-h-screen flex-col items-center p-24">
