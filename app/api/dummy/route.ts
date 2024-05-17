@@ -9,20 +9,22 @@ export const POST = async (request: NextRequest) => {
         const body = await request.json();
         
         // Fetch the current webhooks array from the KV store
-        let whooks: any[] | null = await kv.get("webhooks");
+        let whooks: any | null = await kv.get("webhooks");
 
         console.log({whooks: JSON.stringify(whooks)})
         
         // If the webhooks array doesn't exist, initialize it
         if (!whooks) {
             whooks = [];
+        } else {
+            whooks = JSON.parse(whooks)
         }
         
         // Append the new webhook to the array
         whooks.push(body);
         
         // Save the updated array back to the KV store
-        await kv.set("webhooks", whooks);
+        await kv.set("webhooks", JSON.stringify(whooks));
         
         return NextResponse.json("success", { status: 200 });
     } catch (error) {
