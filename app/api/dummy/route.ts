@@ -10,6 +10,8 @@ export const POST = async (request: NextRequest) => {
         
         // Fetch the current webhooks array from the KV store
         let whooks: any[] | null = await kv.get("webhooks");
+
+        console.log({whooks})
         
         // If the webhooks array doesn't exist, initialize it
         if (!whooks) {
